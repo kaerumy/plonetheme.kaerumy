@@ -65,7 +65,9 @@
   <!-- Drop the Plone 6 nav toggler, the theme provides its own (see js/theme.js) -->
   <drop css:content="#portal-mainnavigation .navbar-toggler" />
 
-  <!-- Portal-searchbox -->
+  <!-- Portal-searchbox: drop the redundant submit button, the livesearch
+       input field can be searched by typing / pressing Enter -->
+  <drop css:content="#portal-searchbox .searchButton" />
   <replace
       css:content='#portal-searchbox'
       css:theme='#portal-searchbox'
