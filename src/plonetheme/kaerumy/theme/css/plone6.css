@@ -1,0 +1,88 @@
+/*
+  Plone 6 markup compatibility for the Clean Blog theme.
+
+  Plone 6 (Classic UI / Mockup) renders some header elements without the
+  classes Plone 5 used, so the matching selectors in main.css no longer hit.
+  This file re-applies the same styling to the Plone 6 markup.
+*/
+
+/* Plone 5: #content .documentFirstHeading */
+#content > header > h1 {
+  border-bottom: 1px solid grey;
+  padding-bottom: 15px;
+}
+
+#content > header > h1 nav {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* Plone 5: #content .documentDescription */
+#content > header > p {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0 0 10px;
+}
+
+/* Plone 6 renders the main nav as ul#portal-globalnav.navbar-nav
+   (Bootstrap 5 markup). The core UI bundle's Bootstrap 5 turns .navbar-nav
+   into a vertical flex column; restore the theme's horizontal Bootstrap 3
+   navbar row (classes are normalized in rules.xml) */
+.navbar-custom .navbar-nav {
+  display: block;
+}
+
+/* The core bundle's Bootstrap 5 also turns .navbar and .navbar >
+   .container-fluid into flex containers and gives .navbar-collapse a
+   flex-basis of 100%, which breaks the theme's Bootstrap 3 float layout
+   (logo left, nav and search on one row at the right). Restore the block
+   layout. */
+.navbar-custom {
+  display: block;
+}
+
+.navbar-custom .container-fluid {
+  display: block;
+}
+
+/* Bootstrap 5 in the core bundle paints every .navbar-nav li with a solid
+   light background and dark text (offcanvas styling). The Clean Blog navbar
+   is transparent over the hero with white links; strip that back. */
+.navbar-custom .navbar-nav li {
+  background-color: transparent;
+  color: #fff;
+}
+
+.navbar-custom .navbar-nav li a {
+  background-color: transparent;
+}
+
+.navbar-custom .navbar-nav li a:hover,
+.navbar-custom .navbar-nav li a:focus {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-custom .navbar-nav li.active > a,
+.navbar-custom .navbar-nav li.current > a,
+.navbar-custom .navbar-nav li.inPath > a,
+.navbar-custom .navbar-nav li.selected > a {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Plone 6 renders the searchbox with Bootstrap 5 utility classes */
+#portal-searchbox {
+  display: flex;
+}
+
+#portal-searchbox .searchButton {
+  border-color: #fff;
+  color: #fff;
+}
+
+#portal-searchbox .searchButton:hover {
+  background-color: #0085a1;
+  color: #fff;
+}

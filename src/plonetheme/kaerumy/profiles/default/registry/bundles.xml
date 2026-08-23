@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+  <!--
+    Plone 6 UI (edit bar / personal tools) is styled by the base theme
+    (barceloneta) CSS. A Diazo theme's own production-css replaces it,
+    so the toolbar would render unstyled. Load the base theme CSS as a
+    bundle, only active while plonetheme-kaerumy is the current theme
+    (see enabled-bundles in theme/manifest.cfg).
+  -->
+  <records
+      interface="plone.base.interfaces.IBundleRegistry"
+      prefix="plone.bundles/kaerumy-core"
+  >
+    <value key="enabled">False</value>
+    <value key="csscompilation">++theme++barceloneta/css/barceloneta.min.css</value>
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
+</registry>
