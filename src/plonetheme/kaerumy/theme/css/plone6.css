@@ -86,3 +86,11 @@
   background-color: #0085a1;
   color: #fff;
 }
+
+/* Plone 6 adds an empty .sr-only span inside the active page item. The
+   theme's .pagination li > span rules (written for Plone 5, where the
+   active page number was a span) match it and paint a stray teal box
+   next to the current page. Keep it hidden. */
+.pagination li > span.sr-only {
+  display: none;
+}
