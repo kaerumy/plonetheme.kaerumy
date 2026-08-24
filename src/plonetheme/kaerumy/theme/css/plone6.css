@@ -144,3 +144,14 @@
     color: rgba(64, 64, 64, 0.8);
   }
 }
+
+/* Plone 6 core (barceloneta) styles the footer as a dark band with light
+   text, and the theme adds a grey top border. The original design has a
+   plain footer: no background, no border, theme text color (which also
+   makes the light band text readable again). The extra type selector
+   out-specificities the same-# rule in main.css, which loads later. */
+footer#portal-footer-wrapper {
+  background-color: transparent;
+  border-top: 0;
+  color: #404040;
+}
