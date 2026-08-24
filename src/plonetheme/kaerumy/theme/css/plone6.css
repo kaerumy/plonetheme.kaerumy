@@ -94,3 +94,46 @@
 .pagination li > span.sr-only {
   display: none;
 }
+
+/* Align the searchbox with the navbar links: push it down and match the
+   nav link typography (Plone 6 renders the field as a Bootstrap 5
+   form-control, which inherits the body serif font). */
+#portal-searchbox {
+  margin-top: 12px;
+}
+
+#portal-searchbox input.searchField {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+#portal-searchbox input.searchField::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Scrolled navbar (clean-blog.min.js adds .is-fixed): nav links turn
+   dark, so the search field must follow. */
+.navbar-custom.is-fixed #portal-searchbox input.searchField {
+  color: #404040;
+}
+
+.navbar-custom.is-fixed #portal-searchbox input.searchField::placeholder {
+  color: rgba(64, 64, 64, 0.8);
+}
+
+/* Mobile: the navbar keeps Bootstrap's light background (the theme's
+   transparent override only applies at >=768px), so the field needs
+   dark text there. */
+@media (max-width: 767px) {
+  #portal-searchbox input.searchField {
+    color: #404040;
+  }
+
+  #portal-searchbox input.searchField::placeholder {
+    color: rgba(64, 64, 64, 0.8);
+  }
+}
