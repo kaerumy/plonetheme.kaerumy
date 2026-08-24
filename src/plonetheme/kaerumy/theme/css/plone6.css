@@ -6,9 +6,11 @@
   This file re-applies the same styling to the Plone 6 markup.
 */
 
-/* Plone 5: #content .documentFirstHeading */
+/* Plone 5: #content .documentFirstHeading. The P5 site's custom.css
+   overrode the theme with bold and no underline border, so do the
+   same here. */
 #content > header > h1 {
-  border-bottom: 1px solid grey;
+  font-weight: 700;
   padding-bottom: 15px;
 }
 
@@ -161,4 +163,67 @@ footer#portal-footer-wrapper {
    body class). */
 html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-latest-note.site-kaeru.template-full_view.thumbs-on.userrole-anonymous.viewpermission-view.patterns-loaded div.outer-wrapper div.container main#main-container.row.row-offcanvas.row-offcanvas-right div.col-xs-12.col-sm-12 div.row div.box div.col-xs-12.col-sm-12 article#content header div#viewlet-below-content-title {
   display: none;
+}
+
+/* ------------------------------------------------------------------
+   Port of the P5 site's custom.css text styling (site-level
+   customizations that were never part of the theme). The P5 class
+   names do not exist in the Plone 6 markup, so the selectors target
+   the P6 equivalents.
+   ------------------------------------------------------------------ */
+
+/* Byline (P5: #content .documentByLine). The P5 file also had
+   .documentAuthor { display: none }, but that rule was silently
+   dropped by browsers (the file had a stray closing brace) and never
+   applied on the live site, so the author stays visible. */
+#content #section-byline {
+  color: #979797;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+/* P6 renders the byline author as a Bootstrap 5 badge (light pill,
+   dark text); the P5 look is plain inherited text. */
+#content #section-byline a {
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Responsive content images (P5 rule as-is; P6 core defines no
+   .image-responsive rule). */
+.image-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figure spacing and caption styling (P5 rules; 'sohne' was never
+   loaded on the P5 site either and fell back to Helvetica Neue). */
+#content figure {
+  margin-bottom: 50px;
+}
+
+#content figure figcaption {
+  font-size: 80%;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgb(117, 117, 117);
+}
+
+/* Collection full-view item titles: P5 rendered them as
+   h2.headline, which the P5 custom.css styled without an underline.
+   P6 renders them as h1 > a.summary.url. */
+#content h1 a.summary.url {
+  text-decoration: none;
+}
+
+/* Logged-in managers: the P5 site styled the collection heading
+   smaller and lighter in the edit view (its rule was scoped to the
+   latest-note page for manager/owner roles). */
+body.userrole-manager.section-latest-note #content > header > h1 {
+  font-size: 24px;
+  font-weight: 200;
 }
