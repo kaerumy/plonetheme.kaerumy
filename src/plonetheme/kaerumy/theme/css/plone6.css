@@ -155,3 +155,10 @@ footer#portal-footer-wrapper {
   border-top: 0;
   color: #404040;
 }
+
+/* Front page: hide the latest-note collection byline for anonymous
+   visitors (port of the P5 site's custom.css rule; P6 adds no pat-plone
+   body class). */
+html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-latest-note.site-kaeru.template-full_view.thumbs-on.userrole-anonymous.viewpermission-view.patterns-loaded div.outer-wrapper div.container main#main-container.row.row-offcanvas.row-offcanvas-right div.col-xs-12.col-sm-12 div.row div.box div.col-xs-12.col-sm-12 article#content header div#viewlet-below-content-title {
+  display: none;
+}
