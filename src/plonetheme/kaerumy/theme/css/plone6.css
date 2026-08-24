@@ -111,6 +111,13 @@
   color: #fff;
 }
 
+/* Bootstrap 5's .form-control:focus (specificity 0,2,0) overrides the
+   theme's transparent input background (0,1,1) and paints it white,
+   hiding the white text. Keep it transparent when focused. */
+#portal-searchbox input.searchField:focus {
+  background-color: transparent;
+}
+
 #portal-searchbox input.searchField::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
