@@ -5,7 +5,10 @@
     i18n_domain="plonetheme.kaerumy">
 
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <include package="z3c.jbot" file="meta.zcml" />
+  <!-- Include the full z3c.jbot configuration: it registers the jbot
+       metadirectives (meta.zcml) and installs the runtime template
+       patches (z3c.jbot.patches) that make the overrides effective. -->
+  <include package="z3c.jbot" />
   <browser:jbot
       directory="overrides"
       layer="plonetheme.kaerumy.interfaces.IPlonethemeKaerumyLayer"
