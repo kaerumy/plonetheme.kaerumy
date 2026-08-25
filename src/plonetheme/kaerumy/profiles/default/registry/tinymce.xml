@@ -18,18 +18,12 @@
   </record>
 
 
-  <record name="plone.custom_plugins" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="custom_plugins">
-    <field type="plone.registry.field.List">
-      <default/>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a list of custom plugins which will be loaded in the editor. Format is pluginname|location, one per line.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Custom plugins</title>
-      <value_type type="plone.registry.field.TextLine"/>
-    </field>
-    <value>
-      <element>template|++plone++static/components/tinymce-builded/js/tinymce/plugins/template</element>
-    </value>
-  </record>
+  <!-- plone.custom_plugins is not set: in Plone 6 the TinyMCE plugins are
+       pre-bundled by plone.staticresources (bundle-plone) and the Plone 5
+       "tinymce-builded" static path no longer exists, so registering the
+       template plugin from there only produced a 404 in the editor console.
+       (The template plugin is not part of the Plone 6 bundle either, so the
+       plone.templates list above has no effect there.) -->
 
   <!-- <records interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" prefix="plone">
     <value key="custom_attributes" purge="false">

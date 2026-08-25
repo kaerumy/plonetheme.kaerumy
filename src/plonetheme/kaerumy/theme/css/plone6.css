@@ -19,8 +19,11 @@
   font-weight: 400;
 }
 
-/* Plone 5: #content .documentDescription */
-#content > header > p {
+/* Plone 5: #content .documentDescription. Plone 6 renders descriptions
+   as p.lead (both the content description and full-view item
+   descriptions). */
+#content > header > p,
+#content p.lead {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 300;
@@ -226,4 +229,120 @@ html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-
 body.userrole-manager.section-latest-note #content > header > h1 {
   font-size: 24px;
   font-weight: 200;
+}
+
+/* ------------------------------------------------------------------
+   Plone 6 modals (TinyMCE "Insert image" / link dialogs).
+
+   The mockup plone-modal pattern renders these with Bootstrap 5
+   classes (.modal.fade.show, .modal-dialog). The theme's Bootstrap 3
+   (css/bootstrap.min.css, loaded before this file) breaks them:
+
+   1. `.fade { opacity: 0 }` -- in BS3 a .fade element only becomes
+      visible when the (BS3-only) .in class is added. Plone 6 adds
+      .show instead, so the dialog box stays at opacity 0 and only
+      the dark backdrop is visible: "the dialog doesn't load".
+   2. `.modal.fade .modal-dialog { transform: translate(0, -25%) }`
+      -- the transform is only cleared by BS3's .modal.in, so the
+      dialog would be shifted ~25% of the viewport up even if it
+      were visible.
+   3. `.modal { overflow: hidden }` clips tall dialogs; BS5 scrolls.
+
+   Re-assert the Bootstrap 5 (barceloneta core bundle) behaviour.
+   ------------------------------------------------------------------ */
+.modal.fade {
+  opacity: 1;
+}
+
+.modal.fade .modal-dialog {
+  transform: translate(0, -50px);
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+
+.modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Constrain the dialog to the viewport: a dialog taller than the
+   screen (many form fields, long selection lists) would otherwise
+   hide its footer (Insert / Cancel) below the fold. The body scrolls
+   internally (same pattern as Bootstrap 5 .modal-dialog-scrollable). */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 60px);
+}
+
+.modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ------------------------------------------------------------------
+    TinyMCE image dialog, "Internal Image" tab: selected items.
+
+    The mockup relateditems pattern renders each selected item as a
+    full-width row (`.select2-choices > li { flex: 1 1 100% }`)
+    showing title, full path and a 100x100 thumbnail. A few images
+    already make the list taller than the dialog. Compact the chips:
+    auto width (several per row), 40px thumbnail, title on one line,
+    no path, and the close (x) link in normal flow.
+    ------------------------------------------------------------------ */
+.pat-relateditems .select2-choices > li {
+  flex: 0 1 auto;
+}
+
+/* Keep the search input as its own full-width row. */
+.pat-relateditems .select2-choices > li.select2-search-field {
+  flex: 1 1 100%;
+}
+
+.pat-relateditems .select2-choices > li.select2-search-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* The close link is positioned absolutely by the select2 CSS; flow
+   it at the start of the chip instead. */
+.pat-relateditems .select2-choices .select2-search-choice .select2-search-choice-close {
+  position: static;
+  order: -1;
+}
+
+.pat-relateditems .select2-choices .select2-search-choice > div {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.pat-relateditems .select2-choices .select2-search-choice .pat-relateditems-item {
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pat-relateditems .select2-choices .select2-search-choice .pat-relateditems-result-info {
+  min-width: 0;
+}
+
+/* Title on one line (type icon + text) instead of title + full path. */
+.pat-relateditems .select2-choices .select2-search-choice .pat-relateditems-item-title {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pat-relateditems .select2-choices .select2-search-choice .pat-relateditems-item-path {
+  display: none;
+}
+
+/* 40px thumbnail instead of 100x100. */
+.pat-relateditems .select2-choices .select2-search-choice .pat-relateditems-item-image img {
+  width: 40px;
+  height: 40px;
 }
