@@ -161,6 +161,13 @@ footer#portal-footer-wrapper {
   color: #404040;
 }
 
+/* Plone 6 renders the below-content viewlets (document actions: RSS
+   feed link) in the #content article's own <footer>. Center the actions
+   list (Bootstrap 5 .list-inline is a flex row). */
+#content footer #viewlet-below-content ul.list-inline {
+  justify-content: center;
+}
+
 /* Front page: hide the latest-note collection heading and byline for
    anonymous visitors (port of the P5 site's custom.css rules; P6 adds
    no pat-plone body class, and P6's document title is a plain,

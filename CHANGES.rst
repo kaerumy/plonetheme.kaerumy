@@ -5,6 +5,13 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Remove the duplicated RSS feed (document actions) link: Plone 6's
+  #content article already contains the below-content viewlets in its
+  own footer, so the extra ``#viewlet-below-content`` copy in the theme's
+  central column (rules.xml) rendered the RSS feed link twice. Center
+  the remaining actions list in css/plone6.css.
+  [kaerumy]
+
 - Complete the port of the P5 site's custom.css in css/plone6.css: hide
   the latest-note collection heading (not just the byline) for anonymous
   visitors, and apply the P5 item title (sohne stack, 48px, no

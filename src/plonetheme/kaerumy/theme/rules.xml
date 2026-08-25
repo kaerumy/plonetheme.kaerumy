@@ -145,14 +145,10 @@
           <div class="clearFix"></div>
         </div>
       </div>
-      <section id="viewlet-below-content-body" class="row">
-        <div class="box">
-          <div class="col-xs-12 col-sm-12">
-            <xsl:copy-of css:select="#viewlet-below-content" />
-          </div>
-          <div class="clearFix"></div>
-        </div>
-      </section>
+      <!-- Plone 6's #content article already contains the below-content
+           viewlets in its own <footer> (#viewlet-below-content); copying
+           #viewlet-below-content here again duplicated the document
+           actions (RSS feed link) on every page. -->
     </div>
   </replace>
 
