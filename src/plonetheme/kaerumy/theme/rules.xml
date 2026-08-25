@@ -96,6 +96,7 @@
         <xsl:value-of select="$site_title"/>
       </h1>
       <hr class="small" />
+      <span class="subheading">Stuff I'm working on ... </span>
     </div>
   </replace>
 
