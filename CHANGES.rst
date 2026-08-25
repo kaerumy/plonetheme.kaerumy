@@ -5,6 +5,13 @@ Changelog
 1.0a1 (unreleased)
 ------------------
 
+- Complete the port of the P5 site's custom.css in css/plone6.css: hide
+  the latest-note collection heading (not just the byline) for anonymous
+  visitors, and apply the P5 item title (sohne stack, 48px, no
+  underline) and item description (sohne stack, 22px, grey) styling to
+  the Plone 6 full-view markup (h1 > a.summary.url, .item p.lead).
+  [kaerumy]
+
 - Fix TinyMCE "Insert image" (and link) dialog: the theme's Bootstrap 3
   (`.fade { opacity: 0 }`, `.modal.fade .modal-dialog` transform/margins)
   overrode the Bootstrap 5 rules of Plone 6's plone-modal pattern, so the

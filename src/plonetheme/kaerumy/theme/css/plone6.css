@@ -161,9 +161,14 @@ footer#portal-footer-wrapper {
   color: #404040;
 }
 
-/* Front page: hide the latest-note collection byline for anonymous
-   visitors (port of the P5 site's custom.css rule; P6 adds no pat-plone
-   body class). */
+/* Front page: hide the latest-note collection heading and byline for
+   anonymous visitors (port of the P5 site's custom.css rules; P6 adds
+   no pat-plone body class, and P6's document title is a plain,
+   classless h1). */
+html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-latest-note.site-kaeru.template-full_view.thumbs-on.userrole-anonymous.viewpermission-view.patterns-loaded div.outer-wrapper div.container main#main-container.row.row-offcanvas.row-offcanvas-right div.col-xs-12.col-sm-12 div.row div.box div.col-xs-12.col-sm-12 article#content header h1 {
+  display: none;
+}
+
 html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-latest-note.site-kaeru.template-full_view.thumbs-on.userrole-anonymous.viewpermission-view.patterns-loaded div.outer-wrapper div.container main#main-container.row.row-offcanvas.row-offcanvas-right div.col-xs-12.col-sm-12 div.row div.box div.col-xs-12.col-sm-12 article#content header div#viewlet-below-content-title {
   display: none;
 }
@@ -216,11 +221,26 @@ html body#visual-portal-wrapper.frontend.icons-on.portaltype-collection.section-
   color: rgb(117, 117, 117);
 }
 
-/* Collection full-view item titles: P5 rendered them as
-   h2.headline, which the P5 custom.css styled without an underline.
-   P6 renders them as h1 > a.summary.url. */
+/* Collection full-view item titles: P5 rendered them as h2.headline a,
+   which the P5 custom.css styled with the sohne stack, 48px, no
+   underline. P6 renders them as h1 > a.summary.url (the summary view
+   uses h2, so the h1 keeps this rule on the full view). */
 #content h1 a.summary.url {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
   text-decoration: none;
+}
+
+/* Collection full-view item descriptions: P5 rendered them as
+   div.description, styled by the P5 custom.css (sohne stack, 22px,
+   grey). P6 renders them as p.lead, the same class the document
+   header description uses; scope the rule to the .item wrapper so the
+   header description keeps the Open Sans styling above. */
+#content .item p.lead {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: rgb(117, 117, 117);
 }
 
 /* Logged-in managers: the P5 site styled the collection heading
